@@ -13,10 +13,10 @@ sudo apt-get install \
     ca-certificates \
     curl \
     software-properties-common
-	
+
 sleep 1
 
-	
+
 DOCKER_EE_URL=https://storebits.docker.com/ee/trial/sub-545a8fe6-2fd7-4c53-990b-926db2e3e81a
 
 sleep 1
@@ -32,7 +32,7 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    $DOCKER_EE_VERSION"
 
-   
+
 sudo apt-get update
 
 sleep 2
@@ -55,19 +55,19 @@ if [ $? -eq 0 ]; then
 else
 	echo Docker installation error.
 fi
-  
+
 
 '''sudo docker container run --rm -it --name ucp \
   -v /var/run/docker.sock:/var/run/docker.sock \
   docker/ucp:3.0.2 install \
-  --host-address 192.168.0.14 
+  --host-address 192.168.0.14
   --interactive'''
- 
-The below commands make the docker group accessable and auto enable docker. 
- 
+
+The below commands make the docker group accessable and auto enable docker.
+
 sudo groupadd docker
 
-sudo usermod -aG docker ubuntu
+sudo usermod -a -G docker anand
   
 docker run hello-world
 
@@ -77,11 +77,11 @@ if [ $? -eq 0 ]; then
 else
 	echo Docker unable to run in current user sucessfully!
 fi
-  
+
 #sudo systemctl enable docker
-  
+
 echo manual | sudo tee /etc/init/docker.override
-  
+
 #sudo chkconfig docker on
 
 if [ $? -eq 0 ]; then
@@ -89,5 +89,5 @@ if [ $? -eq 0 ]; then
 else
 	echo Docker installation error.
 fi
- 
+
 echo Docker is configured with the $USER user

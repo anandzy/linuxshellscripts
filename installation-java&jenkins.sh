@@ -23,6 +23,25 @@ sudo apt-get install -y jenkins
 
 sleep 2
 
+#Levaraging the user
+
+sudo chmod 666 /var/run/docker.sock
+
+sudo groupadd docker
+
+sudo usermod -a -G jenkins $user
+
+#Test the jenkins user by below commands
+sudo -u jenkins docker run hello-world
+
+#Now login as a user Jenkins
+sudo -i
+su jenkins
+docker run hello-world
+
+
+
+
 '''#To remove jenkins
 sudo service jenkins stop
 sudo rm-rf /etc/apt/sources.list.d/jenkins.list
@@ -33,11 +52,7 @@ sudo apt upgrade && sudo apt update && sudo apt-get remove jenkins && sudo apt-g
 #/var/lib/docker
 
 cd /var/lib/docker
-
 aws ecr get-login --region us-east-1
-
 docker build -t hello-world .
-
 docker tag hello-world:latest 917044978668.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
-
 docker push 917044978668.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
