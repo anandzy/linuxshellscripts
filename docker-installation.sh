@@ -89,4 +89,5 @@ if [ $? -eq 0 ]; then
 else
 	echo Docker installation error.
 fi
-  
+ 
+echo Docker is configured with the $USER user
