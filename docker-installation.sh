@@ -75,14 +75,14 @@ docker run hello-world
 if [ $? -eq 0 ]; then
 	echo Docker running in current user sucessfully!
 else
-	echo Docker unableto run in current user sucessfully!
+	echo Docker unable to run in current user sucessfully!
 fi
   
-sudo systemctl enable docker
+#sudo systemctl enable docker
   
 echo manual | sudo tee /etc/init/docker.override
   
-sudo chkconfig docker on
+#sudo chkconfig docker on
 
 if [ $? -eq 0 ]; then
 	echo Docker installation successfull.
